@@ -3,11 +3,13 @@ from rest_framework import generics
 from apps.user.models import User
 from .serializers import UserSerializer
 import apps.utils.permission as permission
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 
-class UserListAPIView(generics.ListAPIView, permission.AuthPermission):
+class UserListAPIView(permission.AuthPermissionAndAdmin, generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    # permission_classes = [IsAdminUser & IsAuthenticated]
 
 
 class CreateUserAPIView(generics.CreateAPIView):
