@@ -58,7 +58,7 @@ class User(AbstractUser):
     )
     birth_date = models.DateField(null=True, blank=True)
     modication_date = models.DateField(auto_now=True)
-    register_date = models.DateField(blank=False, null=False)
+    register_date = models.DateField(blank=False, null=False, auto_now_add=True)
     register_user = models.CharField(max_length=255, null=True, blank=True)
     email = models.EmailField(max_length=255, null=False, blank=False)
     num_tuition = models.CharField(max_length=255, null=True, blank=True)
