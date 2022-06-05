@@ -16,3 +16,11 @@ class CreateUserAPIView(generics.CreateAPIView):
     """Create a new user in the system"""
 
     serializer_class = UserSerializer
+
+
+class UserProfileAPIView(permission.AuthPermission, generics.RetrieveUpdateAPIView):
+    serializer_class = UserSerializer
+
+    def get_object(self):
+
+        return self.request.user

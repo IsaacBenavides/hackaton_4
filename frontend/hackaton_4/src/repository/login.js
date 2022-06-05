@@ -1,8 +1,7 @@
 import repository from "./base_repository";
-import axios from "axios";
 
 async function requestLogin({ username, password }) {
-  let response = await axios.post("http://localhost:8000/api/token/", {
+  let response = await repository.post("/token/", {
     username: username,
     password: password,
   });
