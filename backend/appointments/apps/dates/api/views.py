@@ -8,7 +8,7 @@ from .serializers import (
     CreateDateSerializer,
 )
 
-from apps.utils.permission import AuthPermission
+from apps.utils.permission import AuthPermission, DoctorAuthPermission
 
 
 class ScheduleListAPIView(AuthPermission, generics.ListAPIView):
@@ -39,7 +39,7 @@ class DateListAPIView(AuthPermission, generics.ListAPIView):
         return data
 
 
-class CreateDateAPIView(AuthPermission, generics.CreateAPIView):
+class CreateDateAPIView(DoctorAuthPermission, generics.CreateAPIView):
     """Retrieve a Specialties"""
 
     serializer_class = CreateDateSerializer

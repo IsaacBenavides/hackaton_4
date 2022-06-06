@@ -25,9 +25,7 @@ export default function useLogin() {
         password: e.target[1].value,
       });
       try {
-        let userDetails = await requestUserDetails({
-          token: response.data.access,
-        });
+        let userDetails = await requestUserDetails();
         loginContext.changeStateSession({
           isLogged: true,
           ...response.data,

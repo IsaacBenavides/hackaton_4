@@ -24,8 +24,14 @@ export const LoginPage = () => {
             <div className="login_body_container">
               <form action="" onSubmit={loggin}>
                 <input type="text" placeholder="Username" className="my-2" />
-                <input type="password" placeholder="Password" />
-                <a href="/register"> Registro</a>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="my-2"
+                />
+                <a href="/register" className="my-5">
+                  Registro
+                </a>
                 <Button
                   variant="primary"
                   type="submit"

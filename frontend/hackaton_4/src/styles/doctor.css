@@ -1,0 +1,11 @@
+/* .dates {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 25%;
+	gap: var(--size-3);
+	overflow-x: auto;
+	overscroll-behavior-inline: contain;
+	scrollbar-width: 4rem;
+	scrollbar-color: red;
+	scrollbar-base-color: red;
+} */

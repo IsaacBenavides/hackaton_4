@@ -1,4 +1,10 @@
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAdminUser, IsAuthenticated, BasePermission
+from apps.user.models import User
+
+
+class IsDoctor(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.type_user == User.UserType.Doctor
 
 
 class AuthPermission:
@@ -7,3 +13,7 @@ class AuthPermission:
 
 class AuthPermissionAndAdmin:
     permission_classes = [IsAdminUser & IsAuthenticated]
+
+
+class DoctorAuthPermission:
+    permission_classes = [IsAuthenticated & IsDoctor]

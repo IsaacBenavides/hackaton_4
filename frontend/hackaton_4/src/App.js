@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { Home } from "./pages/Home.jsx";
 import { RegisterPage } from "./pages/Register.jsx";
+import { CreateDate } from "./pages/CreateDate.jsx";
 
 function App() {
   const sessionInfoLocal = localStorage.getItem("sessionInfo");
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<Navigate to={redirect()} />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/home/create_date" element={<CreateDate />} />
           <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </Router>

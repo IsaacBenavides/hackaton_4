@@ -24,3 +24,10 @@ class UserProfileAPIView(permission.AuthPermission, generics.RetrieveUpdateAPIVi
     def get_object(self):
 
         return self.request.user
+
+
+class PatientListAPIView(permission.AuthPermission, generics.ListAPIView):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        return User.objects.filter(type_user=User.UserType.Patient)

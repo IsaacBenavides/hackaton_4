@@ -1,3 +1,4 @@
+from secrets import choice
 from django.db import models
 from apps.user.models import User
 
@@ -17,6 +18,11 @@ class Schedule(models.Model):
 
 
 class Date(models.Model):
+    class DateState(models.TextChoices):
+        PENDING = 0, "Pendiente"
+        CONFIRMED = 1, "Confirmado"
+        CANCELED = 2, "Cancelado"
+        FINISHED = 3, "Finalizado"
 
     doctor = models.ForeignKey(
         User,
@@ -37,7 +43,7 @@ class Date(models.Model):
         blank=False,
         null=False,
     )
-    state = models.CharField(max_length=255, null=False, blank=False)
+    state = models.IntegerField(choices=DateState.choices, default=DateState.PENDING)
     description = models.TextField(null=True, blank=True)
     is_active = models.BooleanField(default=True)
     register_date = models.DateField(blank=False, null=False, auto_now_add=True)

@@ -6,6 +6,12 @@ async function requestLogin({ username, password }) {
     password: password,
   });
 
+  if (response.status === 200) {
+    repository.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${response.data.access}`;
+  }
+
   return response;
 }
 
