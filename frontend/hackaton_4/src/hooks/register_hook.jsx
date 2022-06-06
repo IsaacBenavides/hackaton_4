@@ -44,6 +44,11 @@ export default function useRegister() {
           body: "Ya existe este usuario",
         });
       }
+      setShowError({
+        show: true,
+        title: "Error",
+        body: "Hubo un error.\nIntente de nuevo mas tarde",
+      });
     }
   }
 
