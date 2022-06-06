@@ -20,12 +20,12 @@ export const LoginPage = () => {
     <>
       <div className="login_page">
         <div className="login_page_container">
-          <div className="login_page_header">Login</div>
           <div className="login_page_body">
             <div className="login_body_container">
               <form action="" onSubmit={loggin}>
                 <input type="text" placeholder="Username" className="my-2" />
                 <input type="password" placeholder="Password" />
+                <a href="/register"> Registro</a>
                 <Button
                   variant="primary"
                   type="submit"

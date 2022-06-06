@@ -9,6 +9,7 @@ import {
   // HashRouter,
 } from "react-router-dom";
 import { Home } from "./pages/Home.jsx";
+import { RegisterPage } from "./pages/Register.jsx";
 
 function App() {
   const sessionInfoLocal = localStorage.getItem("sessionInfo");
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Navigate to={redirect()} />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </Router>
     </LoginProvider>
