@@ -3,19 +3,18 @@ import { LoginContext } from "../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { NavBarComponent } from "../components/navbar";
 import { Form, Button, Spinner } from "react-bootstrap";
-import useDoctor from "../hooks/doctor_hook";
 import InfoDialog from "../components/info_dialog";
+import useCreateDate from "../hooks/create_date_hook";
 
 export const CreateDate = () => {
   const login = useContext(LoginContext);
   const nav = useNavigate();
-  const { patients, error, setShowError, isLoading, create } = useDoctor();
+  const { patients, error, setShowError, isLoading, create, doctors } =
+    useCreateDate();
 
   useEffect(() => {
     if (!login.session.isLogged) {
       nav("/login");
-    } else if (login.session.isLogged && login.session.type_user !== 2) {
-      nav("/home");
     }
   }, []);
 
@@ -25,17 +24,35 @@ export const CreateDate = () => {
       <div className="container mt-5">
         <Form onSubmit={create}>
           <Form.Group className="mb-3">
-            <Form.Label>Paciente</Form.Label>
-            <Form.Select aria-label="Seleccione a un paciente" required>
-              <option>Seleccione un paciente</option>
-              {patients.map((patient) => {
-                return (
-                  <option key={patient.id} value={patient.id}>
-                    {patient.username} - {patient.first_name}{" "}
-                    {patient.last_name} - {patient.dni}
-                  </option>
-                );
-              })}
+            <Form.Label>
+              {login.session.type_user === 1 ? "Doctor" : "Paciente"}
+            </Form.Label>
+            <Form.Select
+              aria-label={`Seleccione a un ${
+                login.session.type_user === 1 ? "doctor" : "paciente"
+              }`}
+              required
+            >
+              <option>{`Seleccione a un ${
+                login.session.type_user === 1 ? "doctor" : "paciente"
+              }`}</option>
+              {login.session.type_user === 1
+                ? doctors.map((doctor) => {
+                    return (
+                      <option key={doctor.id} value={doctor.id}>
+                        {doctor.username} - {doctor.first_name}{" "}
+                        {doctor.last_name} - {doctor.dni}
+                      </option>
+                    );
+                  })
+                : patients.map((patient) => {
+                    return (
+                      <option key={patient.id} value={patient.id}>
+                        {patient.username} - {patient.first_name}{" "}
+                        {patient.last_name} - {patient.dni}
+                      </option>
+                    );
+                  })}
             </Form.Select>
           </Form.Group>
           <Form.Group className="mb-3">

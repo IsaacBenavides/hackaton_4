@@ -31,3 +31,10 @@ class PatientListAPIView(permission.AuthPermission, generics.ListAPIView):
 
     def get_queryset(self):
         return User.objects.filter(type_user=User.UserType.Patient)
+
+
+class DoctorListAPIView(permission.AuthPermission, generics.ListAPIView):
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        return User.objects.filter(type_user=User.UserType.Doctor)

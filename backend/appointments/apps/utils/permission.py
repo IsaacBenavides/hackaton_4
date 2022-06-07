@@ -16,4 +16,4 @@ class AuthPermissionAndAdmin:
 
 
 class DoctorAuthPermission:
-    permission_classes = [IsAuthenticated & IsDoctor]
+    permission_classes = [IsAuthenticated & IsDoctor | IsAdminUser]

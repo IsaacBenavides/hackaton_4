@@ -4,7 +4,7 @@ import { Button, Spinner, Card } from "react-bootstrap";
 import "../styles/doctor.css";
 import { useNavigate } from "react-router-dom";
 
-export const Doctor = () => {
+export const Patient = () => {
   const { alldates, loader } = useCreateDate();
   const nav = useNavigate();
   return (
@@ -54,7 +54,7 @@ export const Doctor = () => {
                         Doctor: {date.doctor.first_name} {date.doctor.last_name}
                       </Card.Text>
                       <Card.Text>{date.description}</Card.Text>
-                      <Button variant="danger">Eliminar</Button>
+                      {/* <Button variant="primary">Go somewhere</Button> */}
                     </Card.Body>
                   </Card>
                 );

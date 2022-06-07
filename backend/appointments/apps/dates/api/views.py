@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, views, status
 from apps.dates.models import Date, Schedule
 from apps.user.models import User
 from .serializers import (
@@ -7,7 +7,7 @@ from .serializers import (
     DateSerializer,
     CreateDateSerializer,
 )
-
+from rest_framework.response import Response
 from apps.utils.permission import AuthPermission, DoctorAuthPermission
 
 
@@ -39,7 +39,16 @@ class DateListAPIView(AuthPermission, generics.ListAPIView):
         return data
 
 
-class CreateDateAPIView(DoctorAuthPermission, generics.CreateAPIView):
+class CreateDateAPIView(AuthPermission, generics.CreateAPIView):
     """Retrieve a Specialties"""
 
     serializer_class = CreateDateSerializer
+
+
+class DeleteDateAPIView(DoctorAuthPermission, views.APIView):
+    """Retrieve a Specialties"""
+
+    def delete(self, request, pk, format=None):
+        date = self.get_object(pk)
+        date.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { NavBarComponent } from "../components/navbar";
 import useHome from "../hooks/home_hook";
 import { Doctor } from "./Doctor";
+import { Patient } from "./Patient";
 
 export const Home = () => {
   const { nav, login } = useHome();
@@ -17,7 +18,7 @@ export const Home = () => {
       case 0:
         return <div className="container">Admin</div>;
       case 1:
-        return <div className="container">Paciente</div>;
+        return <Patient />;
       case 2:
         return <Doctor />;
       default:
